@@ -1,0 +1,9 @@
+paid,description,amount,dueDay,remaining
+true,Banco,1000.00,5,0.00
+false,Cartão Nubank,1683.43,10,296.85
+false,Emprestimo,921.68,8,0.00
+false,Cartão Itaú,1500.00,15,0.00
+true,Vivo,80.00,21,0.00
+false,Internet,150.00,18,0.00
+false,Farmácia,100.00,20,0.00
+false,Mercado Pago,1120.66,28,0.00
