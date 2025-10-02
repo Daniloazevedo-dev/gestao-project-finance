@@ -56,6 +56,42 @@
     </section>
 
     <section id="expenses" style="margin-top: 40px;">
+      <div class="form-card">
+        <h2 class="section-title">Cadastrar nova despesa</h2>
+        <p class="form-helper">Informe os dados abaixo para registrar uma nova despesa fixa no controle.</p>
+        <form id="expenseForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="expenseDescription">Descrição</label>
+              <input type="text" id="expenseDescription" name="description" placeholder="Ex.: Aluguel do escritório" required>
+            </div>
+            <div class="form-group">
+              <label for="expenseAmount">Valor</label>
+              <input type="number" id="expenseAmount" name="amount" step="0.01" min="0" placeholder="0,00" required>
+            </div>
+            <div class="form-group">
+              <label for="expenseDueDay">Dia de vencimento</label>
+              <input type="number" id="expenseDueDay" name="dueDay" min="1" max="31" placeholder="Ex.: 15" required>
+            </div>
+            <div class="form-group">
+              <label for="expenseRemaining">Valor restante</label>
+              <input type="number" id="expenseRemaining" name="remaining" step="0.01" min="0" placeholder="0,00" required>
+            </div>
+            <div class="form-group checkbox-group">
+              <label for="expensePaid">Status de pagamento</label>
+              <div class="checkbox-wrapper">
+                <input type="checkbox" id="expensePaid" name="paid">
+                <span>Despesa já paga</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Adicionar despesa</button>
+            <span id="formFeedback" class="form-feedback" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+
       <div class="table-wrapper">
         <h2 class="section-title">Despesas fixas do mês</h2>
         <table>
