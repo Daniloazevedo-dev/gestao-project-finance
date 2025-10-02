@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão Financeira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">Finance Planner</div>
+    <nav class="nav-links">
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#expenses">Despesas</a>
+      <a href="#goals">Metas</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="dashboard">
+      <header>
+        <div>
+          <h1>Painel financeiro</h1>
+          <p>Mantenha uma visão clara dos gastos mensais e das próximas contas.</p>
+        </div>
+        <div>
+          <span class="badge paid">Atualizado</span>
+        </div>
+      </header>
+
+      <div class="summary-cards">
+        <div class="card">
+          <h3>Planejado para o mês</h3>
+          <span class="value" id="plannedValue">R$ 0,00</span>
+        </div>
+        <div class="card paid">
+          <h3>Pago até agora</h3>
+          <span class="value" id="paidValue">R$ 0,00</span>
+        </div>
+        <div class="card remaining">
+          <h3>Restante a pagar</h3>
+          <span class="value" id="remainingValue">R$ 0,00</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Progresso do orçamento</h3>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+        <small id="progressLabel">0% do orçamento quitado</small>
+      </div>
+    </section>
+
+    <section id="expenses" style="margin-top: 40px;">
+      <div class="table-wrapper">
+        <h2 class="section-title">Despesas fixas do mês</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Vencimento</th>
+              <th>Restante</th>
+            </tr>
+          </thead>
+          <tbody id="expensesBody">
+            <tr>
+              <td colspan="5">Carregando despesas...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="goals" style="margin-top: 40px;">
+      <h2 class="section-title">Próximas ações</h2>
+      <div id="goalList" class="goal-list"></div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3fhDOtH5PvJt3/6bYw36l3RWiGZghVZ6H0hZkSPrYxk=" crossorigin="anonymous"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
