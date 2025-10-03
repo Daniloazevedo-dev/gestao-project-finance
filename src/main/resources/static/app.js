@@ -1,4 +1,35 @@
 $(document).ready(function () {
+  const DEFAULT_API_PORT = '8080';
+
+  const normalizeBaseUrl = (value) => {
+    if (!value || typeof value !== 'string') {
+      return '';
+    }
+    return value.endsWith('/') ? value.slice(0, -1) : value;
+  };
+
+  const resolveApiBaseUrl = () => {
+    if (typeof window.API_BASE_URL === 'string' && window.API_BASE_URL.trim().length > 0) {
+      return normalizeBaseUrl(window.API_BASE_URL.trim());
+    }
+
+    const { protocol, hostname, port } = window.location;
+
+    if (protocol === 'file:') {
+      return `http://localhost:${DEFAULT_API_PORT}`;
+    }
+
+    const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+    if (isLocalhost && port && port !== DEFAULT_API_PORT) {
+      return `${protocol}//${hostname}:${DEFAULT_API_PORT}`;
+    }
+
+    return '';
+  };
+
+  const apiBaseUrl = resolveApiBaseUrl();
+  const apiUrl = (path) => `${apiBaseUrl}${path}`;
+
   const formatCurrency = (value) =>
     new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -109,7 +140,7 @@ $(document).ready(function () {
   };
 
   const loadDashboard = () => {
-    $.getJSON('/api/finance/summary')
+    $.getJSON(apiUrl('/api/finance/summary'))
       .done((data) => {
         showFormFeedback('', 'success');
         updateSummary(data.summary);
@@ -176,7 +207,7 @@ $(document).ready(function () {
       };
 
       $.ajax({
-        url: '/api/finance/expenses',
+        url: apiUrl('/api/finance/expenses'),
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(payload)
