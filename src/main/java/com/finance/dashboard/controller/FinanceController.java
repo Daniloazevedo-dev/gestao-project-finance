@@ -3,6 +3,7 @@ package com.finance.dashboard.controller;
 import com.finance.dashboard.model.Expense;
 import com.finance.dashboard.model.ExpenseRequest;
 import com.finance.dashboard.model.ExpenseSummary;
+import com.finance.dashboard.model.ExpenseSummaryResponse;
 import com.finance.dashboard.service.FinanceService;
 import java.util.HashMap;
 import java.util.List;
@@ -41,10 +42,13 @@ public class FinanceController {
 
     @GetMapping("/summary")
     public Map<String, Object> getSummary() {
-        ExpenseSummary summary = financeService.calculateSummary();
+        List<Expense> expenses = financeService.listExpenses();
+        ExpenseSummary summary = financeService.calculateSummary(expenses);
+        ExpenseSummaryResponse response = ExpenseSummaryResponse.from(summary, expenses);
+
         Map<String, Object> payload = new HashMap<>();
-        payload.put("summary", summary);
-        payload.put("expenses", financeService.listExpenses());
+        payload.put("summary", response);
+        payload.put("expenses", expenses);
         return payload;
     }
 }
