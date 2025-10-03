@@ -28,7 +28,10 @@ public class FinanceService {
 
     public ExpenseSummary calculateSummary() {
         List<Expense> expenses = expenseRepository.findAll();
+        return calculateSummary(expenses);
+    }
 
+    public ExpenseSummary calculateSummary(List<Expense> expenses) {
         BigDecimal totalPlanned = expenses.stream()
             .map(Expense::getAmount)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
